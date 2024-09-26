@@ -100,6 +100,7 @@ if errorlevel 3 (
 )
 
 :settings
+cls
 echo Settings
 echo -------------------------------------------------------------------
 echo.
