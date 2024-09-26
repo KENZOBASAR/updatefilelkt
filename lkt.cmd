@@ -88,15 +88,30 @@ ECHO %_fYellow%Filename%_RESET%
 ECHO ═════════
 ECHO.
 ECHO  Press A to make a new file B to open a file
-ECHO.
+ECHO  Press C for settings
 ECHO ░░░░Done░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-CHOICE /C:AB /N /M ""
-if errorlevel 2 (
+CHOICE /C:ABC /N /M ""
+if errorlevel 3 (
+    Goto settings
+) else if errorlevel 2 (
     Goto openfile
 ) else if errorlevel 1 (
     Goto makefiletemplete
 )
 
+:settings
+echo Settings
+echo -------------------------------------------------------------------
+echo.
+echo  A. Update LKT
+echo  B. Exit
+CHOICE /C:AB /N /M ""
+
+if errorlevel 2 (
+    Goto splashscreen
+) else if errorlevel 1 (
+    call lktupdater.cmd
+)
 
 :makefiletemplete
 cls
