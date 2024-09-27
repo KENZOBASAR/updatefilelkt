@@ -123,11 +123,17 @@ echo B - Chart file
 echo C - Table file
 echo D - Smartart file
 echo E - Custom template file
+echo H - Markdown file
 echo -----For-programmers-only---------
 echo F - Freebasic template
 echo G - Python template
-CHOICE /C:ABCDEFG /N /M ""
-if errorlevel 7 (
+echo I - Html template
+CHOICE /C:ABCDEFGH /N /M ""
+if errorlevel 9 (
+    Goto htmlmakefile
+) else if errorlevel 8 (
+    Goto markdownmakefile
+) else if errorlevel 7 (
     Goto pythonmakefile
 ) else if errorlevel 6 (
     Goto freebasicmakefile
@@ -142,6 +148,76 @@ if errorlevel 7 (
 ) else if errorlevel 1 (
     Goto makefile
 )
+
+:markdownmakefile
+CLS
+ECHO Filename
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .md in end of the filename!
+SET /P "FILE=░"
+CLS
+ECHO %_fYellow%Filename%_RESET%
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .md in end of the filename!
+ECHO ░%file%░░
+ECHO.
+ECHO    Press any key!
+pause > nul
+goto markdowncustomization
+
+:htmlmakefile
+CLS
+ECHO Filename
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .html in end of the filename!
+SET /P "FILE=░"
+CLS
+ECHO %_fYellow%Filename%_RESET%
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .html in end of the filename!
+ECHO ░%file%░░
+ECHO.
+ECHO    Press any key!
+pause > nul
+goto htmlmakesimpledocument
+
+:htmlmakesimpledocuments
+cls
+echo Hello world! > %file%.html
+goto loop1
+
+:markdowncustomization
+cls
+echo Markdown customization
+echo --------------------------------------------------------------------------------
+echo Title of markdown
+set /p "TITLE="
+echo # %TITLE% >> %FILE% 
+echo Subtitle of markdown
+set /p "TITLESUB="
+echo ## Subtitle >> %file%
+goto mdmake
+
+:mdmake
+CLS
+:loop100
+CLS
+ECHO %file%
+ECHO -----------------------------------[Type Exitcom$ to exit]-[Type ** for bold text `` for code _ for italic]
+TYPE %file%
+SET /P "INPUT="
+IF /I "%INPUT%"=="Exitcom$" goto Leave
+IF /I "%INPUT%"=="Editlinecom$" goto crash
+ECHO %INPUT% >> %file%
+goto loop100
 
 :pythonmakefile
 CLS
@@ -616,4 +692,6 @@ goto loop1
 echo X=Msgbox("IKT has crashed! It may be caused by a bug. INFO: Cannot find label.", 0+16, "Crash") >> vbs.vbs
 start vbs.vbs
 exit
+
+
 
