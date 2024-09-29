@@ -50,12 +50,11 @@ echo Pinging server... (2x)
 ping kenzobasar.github.io > nul
 ping kenzobasar.github.io > nul
 echo FREEZEDATA running...
-echo LKTLOADED >> LKTFREEZEDATA/123424.dat
 echo Getting device name...
-echo DEVICE:WINDOWS >> LKTFREEZEDATA/897333.dat
 echo Pinging server... (1)
 ping kenzobasar.github.io > nul
 echo Verifying Startup...
+rmdir LKTFREEZEDATA
 goto dissapear
 
 :dissapear
@@ -77,7 +76,6 @@ echo %_fBBlue%▒▒▒▒▒   ▒▒      ▒▒▒▒▒▒
 echo %_fCyan%▒▒  ▒▒  ▒▒      ▒▒   ▒▒ 
 echo %_fCyan%▒▒   ▒▒  ▒▒▒▒▒▒ ▒▒   ▒▒ %_RESET%
 echo    Loading...
-rmdir LKTFREEZEDATA
 timeout 0 > nul
 cls
 REM ------------------------------------------------------------
