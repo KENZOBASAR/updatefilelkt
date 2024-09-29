@@ -77,6 +77,7 @@ echo %_fBBlue%▒▒▒▒▒   ▒▒      ▒▒▒▒▒▒
 echo %_fCyan%▒▒  ▒▒  ▒▒      ▒▒   ▒▒ 
 echo %_fCyan%▒▒   ▒▒  ▒▒▒▒▒▒ ▒▒   ▒▒ %_RESET%
 echo    Loading...
+rmdir LKTFREEZEDATA
 timeout 0 > nul
 cls
 REM ------------------------------------------------------------
