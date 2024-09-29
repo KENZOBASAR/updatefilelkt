@@ -1,7 +1,7 @@
 @ECHO OFF
 CLS
 CHCP 65001 > NUL
-TITLE LKT Snapshot 2.0.0
+TITLE LKT v2.0.0
 REM ----------------DATA--SECTOR-----------------------------
 Set _fBlack=[30m
 Set _bBlack=[40m
