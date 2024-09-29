@@ -1,7 +1,7 @@
 @ECHO OFF
 CLS
 CHCP 65001 > NUL
-TITLE LKT Snapshot 16W78a
+TITLE LKT Snapshot 2.0.0
 REM ----------------DATA--SECTOR-----------------------------
 Set _fBlack=[30m
 Set _bBlack=[40m
@@ -45,11 +45,20 @@ echo %_fBBlue%█████   ██      ██████
 echo %_fCyan%██  ██  ██      ██   ██ 
 echo %_fCyan%██   ██  ██████ ██   ██ %_RESET%
 echo    Loading...
+mkdir LKTFREEEZEDATA
+echo Pinging server... (2x)
 ping kenzobasar.github.io > nul
 ping kenzobasar.github.io > nul
-echo LKTLOADED >> %temp%/123424.dat
-echo DEVICE:WINDOWS >> %temp%/897333.dat
+echo FREEZEDATA running...
+echo LKTLOADED >> LKTFREEZEDATA/123424.dat
+echo Getting device name...
+echo DEVICE:WINDOWS >> LKTFREEZEDATA/897333.dat
+echo Pinging server... (1)
 ping kenzobasar.github.io > nul
+echo Verifying Startup...
+goto dissapear
+
+:dissapear
 cls
 rem THE DISAPPEAR EFFECT1!
 echo.
@@ -692,6 +701,7 @@ goto loop1
 echo X=Msgbox("IKT has crashed! It may be caused by a bug. INFO: Cannot find label.", 0+16, "Crash") >> vbs.vbs
 start vbs.vbs
 exit
+
 
 
 
