@@ -1,7 +1,7 @@
 @ECHO OFF
 CLS
 CHCP 65001 > NUL
-TITLE LKT v2.0.0
+TITLE LKT v3.0.0
 REM ----------------DATA--SECTOR-----------------------------
 Set _fBlack=[30m
 Set _bBlack=[40m
@@ -36,6 +36,31 @@ Set _bBCyan=[106m
 Set _fBWhite=[97m
 Set _bBWhite=[107m
 Set _RESET=[0m
+:Firstloadani
+echo    LKT v3.0.0
+echo  ░░░░░░░░░░░░░░░░
+echo.
+echo            Copyright KCR
+timeout 1 > nul
+cls
+echo    LKT v3.0.0
+echo  ▓▓▓░░░░░░░░░░░░░
+echo.
+echo            Copyright KCR
+timeout 1 > nul
+cls
+echo    LKT v3.0.0
+echo  ▓▓▓▓▓░░░░░░░░░░░
+echo.
+echo            Copyright KCR
+timeout 1 > nul
+cls
+echo    LKT v3.0.0
+echo  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+echo.
+echo            Copyright KCR
+timeout 1 > nul
+cls
 :SPLASHSCREENLOAD
 echo.
 echo.
@@ -86,9 +111,89 @@ type banner.lgk
 ECHO Welcome to LKT
 ECHO A simple Text editor
 ECHO.
-ECHO %_fCyan%Press any key to make a new file%_RESET%
+ECHO %_fCyan%Press any key to start!%_RESET%
 pause > nul
-GOTO FILENAME
+GOTO START
+
+:START
+CLS
+ECHO LKT
+ECHO -----------------------------------------------------------
+ECHO A - Back ...
+ECHO B - Versioninfo
+ECHO C - New  ...
+ECHO D - Settings
+CHOICE /C:ABCD /N /M ""
+if errorlevel 4 (
+    Goto settings
+) else if errorlevel 3 (
+    Goto Filename
+) else if errorlevel 2 (
+    Goto versioninfo
+) else if errorlevel 1 (
+    Goto Splashscreen
+)
+
+:versioninfo
+CLS
+ECHO LKT
+ECHO -----------------------------------------------------------
+ECHO A - Back ...
+ECHO B%_fRed%╔═══════════════════════════════╗
+ECHO C - New ║  VERSION INFORMATION          ║
+ECHO         ║ Version name= 3.0.0           ║
+ECHO         ║ Version tag= v3.0.0           ║
+ECHO         ║ App name= KCR LKT             ║
+ECHO         ╚═══════════════════════════════╝
+ECHO               Press any key to go to main menu %_RESET%
+PAUSE > NUL
+GOTO START
+
+:PRIVACYPOLICY
+CLS
+COLOR 1F
+ECHO Privacy policy
+ECHO -----------------------------------------------------------------
+ECHO The KCR Privacy Policy:
+ECHO   We will never collect user data and upload
+ECHO   it to the server. We only use servers
+ECHO --------------------------------------------
+ECHO Press a key to go down
+pause > nul
+goto priva2
+
+:priva2
+CLS
+COLOR 1F
+ECHO Privacy policy
+ECHO -----------------------------------------------------------------
+ECHO   We will never collect user data and upload
+ECHO   it to the server. We only use servers
+ECHO   for Updates. If you have doubts
+ECHO --------------------------------------------
+ECHO Press a key to go down
+pause > nul
+goto priva3
+
+:priva3
+CLS
+COLOR 1F
+ECHO Privacy policy
+ECHO -----------------------------------------------------------------
+ECHO   it to the server. We only use servers
+ECHO   for Updates. If you have doubts
+ECHO   Go to kenzobasar.github.io for more details.
+ECHO --------------------------------------------
+ECHO      I agree - A
+ECHO      I do not agree - B
+CHOICE /C:AB /N /M ""
+if errorlevel 2 (
+    Goto sad
+) else if errorlevel 1 (
+    color 07
+    Goto start
+)
+
 
 :FILENAME
 CLS
@@ -96,12 +201,10 @@ ECHO %_fYellow%Filename%_RESET%
 ECHO ═════════
 ECHO.
 ECHO  Press A to make a new file B to open a file
-ECHO  Press C for settings
+ECHO.
 ECHO ░░░░Done░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-CHOICE /C:ABC /N /M ""
-if errorlevel 3 (
-    Goto settings
-) else if errorlevel 2 (
+CHOICE /C:AB /N /M ""
+if errorlevel 2 (
     Goto openfile
 ) else if errorlevel 1 (
     Goto makefiletemplete
@@ -113,11 +216,14 @@ echo Settings
 echo -------------------------------------------------------------------
 echo.
 echo  A. Update LKT
-echo  B. Exit
-CHOICE /C:AB /N /M ""
+echo  B. Privacy Policy
+echo  C. Exit
+CHOICE /C:ABC /N /M ""
 
-if errorlevel 2 (
-    Goto splashscreen
+if errorlevel 3 (
+    Goto start
+) else if errorlevel 2 (
+    Goto privacypolicy
 ) else if errorlevel 1 (
     call lktupdater.cmd
 )
@@ -132,12 +238,15 @@ echo C - Table file
 echo D - Smartart file
 echo E - Custom template file
 echo H - Markdown file
+echo J - Documentation file
 echo -----For-programmers-only---------
 echo F - Freebasic template
 echo G - Python template
 echo I - Html template
-CHOICE /C:ABCDEFGH /N /M ""
-if errorlevel 9 (
+CHOICE /C:ABCDEFGHIJ /N /M ""
+if errorlevel 10 (
+    Goto documentation
+) else if errorlevel 9 (
     Goto htmlmakefile
 ) else if errorlevel 8 (
     Goto markdownmakefile
@@ -156,6 +265,51 @@ if errorlevel 9 (
 ) else if errorlevel 1 (
     Goto makefile
 )
+
+:documentation
+CLS
+ECHO Filename
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .md in end of the filename!
+SET /P "FILE=░"
+CLS
+ECHO %_fYellow%Filename%_RESET%
+ECHO ═════════
+ECHO.
+ECHO Enter filename
+ECHO Remember to add .md in end of the filename!
+ECHO ░%file%░░
+ECHO.
+ECHO    Press any key!
+pause > nul
+goto customizedocumen
+
+:customizedocumen
+cls
+echo Customize
+echo ----------------------------------------------------------------
+echo Title
+set /p "title=]"
+echo Author Name
+set /p "author=]"
+goto makefile9000
+
+:makefile9000
+ECHO --------%title%---------------------- >> %file%
+ECHO Author = %author% >> %file%
+CLS
+:loop9000
+CLS
+ECHO %file%
+ECHO -----------------------------------[Type Exitcom$ to exit]-[Type ** for bold text `` for code _ for italic]
+TYPE %file%
+SET /P "INPUT="
+IF /I "%INPUT%"=="Exitcom$" goto Leave
+IF /I "%INPUT%"=="Editlinecom$" goto crash
+ECHO %INPUT% >> %file%
+goto loop9000
 
 :markdownmakefile
 CLS
@@ -500,6 +654,52 @@ ECHO ░%file%░░
 ECHO.
 ECHO    Press any key!
 pause > nul
+echo Customization
+echo ----------------------------------------------------------------------
+echo      ██Art███     ▒▒▒▒Art▒▒▒▒▒▒
+echo                   ▒▒▒▒Art2▒▒▒▒▒
+echo                   ▒▒▒▒Art3▒▒▒▒▒
+echo Press : A              B
+CHOICE /C:AB /N /M ""
+if errorlevel 2 (
+    Goto smartartcustomize1
+) else if errorlevel 1 (
+    Goto smartartmain
+)
+
+:smartartcustomize1
+CLS
+ECHO Customization
+ECHO -----------------------------------------------------------------------
+ECHO Enter the text in Point 1
+SET /P "r1="
+ECHO Enter the text in Point 2
+SET /P "r2="
+ECHO Enter the text in Point 3
+SET /P "r3="
+ECHO Enter the text in Point 4
+SET /P "r4="
+ECHO. > %file%
+goto makefile5009
+
+:makefile5009
+ECHO ▒▒%r1%▒▒▒▒▒▒ >> %file%
+ECHO ▒▒%r2%▒▒▒▒▒▒ >> %file%
+ECHO ▒▒%r3%▒▒▒▒▒▒ >> %file%
+ECHO ▒▒%r4%▒▒▒▒▒▒ >> %file%
+:loop5009
+cls
+echo %file%
+ECHO -----------------------------------[Type Exitcom$ to exit]------------------------
+TYPE %file%
+SET /P "INPUT="
+IF /I "%INPUT%"=="Exitcom$" goto Leave
+IF /I "%INPUT%"=="imgcom$" goto crash
+ECHO %INPUT% >> %file%
+goto loop5009
+
+
+:smartartmain
 CLS
 ECHO Customization
 ECHO -----------------------------------------------------------------------
@@ -701,6 +901,12 @@ echo X=Msgbox("IKT has crashed! It may be caused by a bug. INFO: Cannot find lab
 start vbs.vbs
 exit
 
+:sad
+cls
+echo       :(
+echo          Why???????????????????????????????????????????????
+timeout 0 > nul
+exit
 
 
 
